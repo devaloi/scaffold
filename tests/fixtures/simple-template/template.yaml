@@ -1,0 +1,19 @@
+name: simple
+description: A simple test template
+version: "1.0.0"
+
+variables:
+  - name: projectName
+    description: Project name
+    type: string
+    required: true
+
+  - name: description
+    description: Project description
+    type: string
+    default: "A test project"
+
+hooks:
+  post:
+    - command: echo "done"
+      description: Test hook
