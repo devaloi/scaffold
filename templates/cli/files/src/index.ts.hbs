@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+import { Command } from "commander";
+import { helpCommand } from "./commands/help.js";
+
+const program = new Command();
+
+program
+  .name("{{projectName}}")
+  .description("{{description}}")
+  .version("1.0.0");
+
+helpCommand(program);
+
+program.parse();

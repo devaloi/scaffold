@@ -1,0 +1,9 @@
+import { describe, it, expect } from "vitest";
+import { greet } from "../src/index.js";
+
+describe("{{projectName}}", () => {
+  it("returns a greeting", () => {
+    const result = greet("World");
+    expect(result).toContain("World");
+  });
+});

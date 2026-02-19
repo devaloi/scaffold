@@ -1,0 +1,29 @@
+name: library
+description: TypeScript library with build and test setup
+version: "1.0.0"
+
+variables:
+  - name: projectName
+    description: Project name (kebab-case)
+    type: string
+    required: true
+    validate: "^[a-z][a-z0-9-]*$"
+
+  - name: description
+    description: Project description
+    type: string
+    default: "A new TypeScript library"
+
+  - name: author
+    description: Author name
+    type: string
+    default: ""
+
+hooks:
+  post:
+    - command: npm install
+      description: Installing dependencies
+    - command: git init
+      description: Initializing git repository
+    - command: 'git add -A && git commit -m "feat: initial scaffold"'
+      description: Creating initial commit

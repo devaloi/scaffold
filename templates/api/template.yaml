@@ -1,0 +1,40 @@
+name: api
+description: Express API server with TypeScript
+version: "1.0.0"
+
+variables:
+  - name: projectName
+    description: Project name (kebab-case)
+    type: string
+    required: true
+    validate: "^[a-z][a-z0-9-]*$"
+
+  - name: description
+    description: Project description
+    type: string
+    default: "A new API server"
+
+  - name: author
+    description: Author name
+    type: string
+    default: ""
+
+  - name: useDocker
+    description: Include Dockerfile?
+    type: boolean
+    default: false
+
+  - name: features
+    description: Features to include
+    type: multiselect
+    options: [cors, rate-limit]
+    default: [cors]
+
+hooks:
+  post:
+    - command: npm install
+      description: Installing dependencies
+    - command: git init
+      description: Initializing git repository
+    - command: 'git add -A && git commit -m "feat: initial scaffold"'
+      description: Creating initial commit

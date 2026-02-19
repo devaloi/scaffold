@@ -1,0 +1,11 @@
+import type { Command } from "commander";
+
+export function helpCommand(program: Command): void {
+  program
+    .command("info")
+    .description("Show project information")
+    .action(() => {
+      console.log("{{projectName}} v1.0.0");
+      console.log("{{description}}");
+    });
+}
