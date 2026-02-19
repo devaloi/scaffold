@@ -16,26 +16,23 @@ describe("renderTemplate", () => {
   });
 
   it("handles conditional blocks (true)", () => {
-    const result = renderTemplate(
-      "Start{{#if useDocker}}\nDockerfile{{/if}}\nEnd",
-      { useDocker: true },
-    );
+    const result = renderTemplate("Start{{#if useDocker}}\nDockerfile{{/if}}\nEnd", {
+      useDocker: true,
+    });
     expect(result).toContain("Dockerfile");
   });
 
   it("handles conditional blocks (false)", () => {
-    const result = renderTemplate(
-      "Start{{#if useDocker}}\nDockerfile{{/if}}\nEnd",
-      { useDocker: false },
-    );
+    const result = renderTemplate("Start{{#if useDocker}}\nDockerfile{{/if}}\nEnd", {
+      useDocker: false,
+    });
     expect(result).not.toContain("Dockerfile");
   });
 
   it("handles iteration with each", () => {
-    const result = renderTemplate(
-      "{{#each features}}Feature: {{this}}\n{{/each}}",
-      { features: ["auth", "cors"] },
-    );
+    const result = renderTemplate("{{#each features}}Feature: {{this}}\n{{/each}}", {
+      features: ["auth", "cors"],
+    });
     expect(result).toContain("Feature: auth");
     expect(result).toContain("Feature: cors");
   });

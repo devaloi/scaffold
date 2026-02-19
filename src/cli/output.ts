@@ -26,7 +26,8 @@ function buildTree(paths: string[]): TreeNode[] {
     let current = root;
 
     for (let i = 0; i < parts.length; i++) {
-      const part = parts[i]!;
+      const part = parts[i];
+      if (part === undefined) continue;
       const isFile = i === parts.length - 1;
       let node = current.find((n) => n.name === part);
 
@@ -54,7 +55,8 @@ function renderTree(
   });
 
   for (let i = 0; i < sorted.length; i++) {
-    const node = sorted[i]!;
+    const node = sorted[i];
+    if (node === undefined) continue;
     const isLast = i === sorted.length - 1;
     const connector = isRoot ? "" : isLast ? "└── " : "├── ";
     const childPrefix = isRoot ? "  " : prefix + (isLast ? "    " : "│   ");

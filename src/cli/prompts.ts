@@ -59,9 +59,7 @@ async function promptForVariable(
   }
 }
 
-export async function promptForTemplate(
-  manifests: TemplateManifest[],
-): Promise<string> {
+export async function promptForTemplate(manifests: TemplateManifest[]): Promise<string> {
   return select({
     message: "Select a template",
     choices: manifests.map((m) => ({

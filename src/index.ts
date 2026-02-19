@@ -7,9 +7,7 @@ const program = new Command();
 
 program
   .name("scaffold")
-  .description(
-    "CLI tool that scaffolds project templates from configurable blueprints",
-  )
+  .description("CLI tool that scaffolds project templates from configurable blueprints")
   .version("1.0.0");
 
 registerCommands(program);

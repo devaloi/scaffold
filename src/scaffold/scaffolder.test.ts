@@ -32,10 +32,7 @@ describe("scaffold", () => {
 
     expect(result.filesCreated.length).toBeGreaterThanOrEqual(3);
 
-    const pkg = await fs.readFile(
-      path.join(outputDir, "package.json"),
-      "utf-8",
-    );
+    const pkg = await fs.readFile(path.join(outputDir, "package.json"), "utf-8");
     expect(pkg).toContain('"my-project"');
   });
 
@@ -49,10 +46,7 @@ describe("scaffold", () => {
       outputDir,
     });
 
-    const readme = await fs.readFile(
-      path.join(outputDir, "README.md"),
-      "utf-8",
-    );
+    const readme = await fs.readFile(path.join(outputDir, "README.md"), "utf-8");
     expect(readme).toContain("test-app");
     expect(readme).toContain("My test");
   });
@@ -67,10 +61,7 @@ describe("scaffold", () => {
       outputDir,
     });
 
-    const gitignore = await fs.readFile(
-      path.join(outputDir, ".gitignore"),
-      "utf-8",
-    );
+    const gitignore = await fs.readFile(path.join(outputDir, ".gitignore"), "utf-8");
     expect(gitignore).toContain("node_modules/");
   });
 

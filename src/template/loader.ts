@@ -47,16 +47,12 @@ async function walkDir(dir: string, base: string): Promise<TemplateFile[]> {
 
 export async function loadTemplate(templateDir: string): Promise<LoadedTemplate> {
   if (!(await isDirectory(templateDir))) {
-    throw new TemplateLoadError(
-      `Template directory does not exist: ${templateDir}`,
-    );
+    throw new TemplateLoadError(`Template directory does not exist: ${templateDir}`);
   }
 
   const manifestPath = path.join(templateDir, "template.yaml");
   if (!(await pathExists(manifestPath))) {
-    throw new TemplateLoadError(
-      `Missing template.yaml in ${templateDir}`,
-    );
+    throw new TemplateLoadError(`Missing template.yaml in ${templateDir}`);
   }
 
   const manifestContent = await readFile(manifestPath);

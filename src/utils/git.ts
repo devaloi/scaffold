@@ -11,8 +11,6 @@ export async function cloneRepo(url: string): Promise<string> {
 
 export function isGitUrl(input: string): boolean {
   return (
-    input.startsWith("https://") ||
-    input.startsWith("git@") ||
-    input.endsWith(".git")
+    input.startsWith("https://") || input.startsWith("git@") || input.endsWith(".git")
   );
 }

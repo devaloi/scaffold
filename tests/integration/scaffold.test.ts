@@ -79,14 +79,9 @@ describe("integration: scaffold from built-in templates", () => {
 
     expect(result.filesCreated).toContain("package.json");
     expect(result.filesCreated).toContain(path.join("src", "index.ts"));
-    expect(result.filesCreated).toContain(
-      path.join("src", "routes", "health.ts"),
-    );
+    expect(result.filesCreated).toContain(path.join("src", "routes", "health.ts"));
 
-    const pkg = await fs.readFile(
-      path.join(outputDir, "package.json"),
-      "utf-8",
-    );
+    const pkg = await fs.readFile(path.join(outputDir, "package.json"), "utf-8");
     expect(pkg).toContain('"my-api"');
     expect(pkg).toContain("express");
   });
@@ -125,9 +120,7 @@ describe("integration: scaffold from built-in templates", () => {
 
     expect(result.filesCreated).toContain("package.json");
     expect(result.filesCreated).toContain(path.join("src", "index.ts"));
-    expect(result.filesCreated).toContain(
-      path.join("tests", "index.test.ts"),
-    );
+    expect(result.filesCreated).toContain(path.join("tests", "index.test.ts"));
   });
 });
 
@@ -166,10 +159,7 @@ variables:
     });
 
     expect(result.filesCreated).toContain("index.ts");
-    const content = await fs.readFile(
-      path.join(outputDir, "index.ts"),
-      "utf-8",
-    );
+    const content = await fs.readFile(path.join(outputDir, "index.ts"), "utf-8");
     expect(content).toContain("custom-project");
   });
 });

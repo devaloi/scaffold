@@ -28,21 +28,17 @@ describe("loadTemplate", () => {
 
   it("resolves nested directory structure", async () => {
     const template = await loadTemplate(path.join(FIXTURES, "simple-template"));
-    const srcFiles = template.files.filter((f) =>
-      f.relativePath.startsWith("src"),
-    );
+    const srcFiles = template.files.filter((f) => f.relativePath.startsWith("src"));
     expect(srcFiles.length).toBeGreaterThanOrEqual(1);
   });
 
   it("throws on non-existent directory", async () => {
-    await expect(
-      loadTemplate(path.join(FIXTURES, "nonexistent")),
-    ).rejects.toThrow(TemplateLoadError);
+    await expect(loadTemplate(path.join(FIXTURES, "nonexistent"))).rejects.toThrow(
+      TemplateLoadError,
+    );
   });
 
   it("throws on missing template.yaml", async () => {
-    await expect(loadTemplate(path.join(FIXTURES))).rejects.toThrow(
-      TemplateLoadError,
-    );
+    await expect(loadTemplate(path.join(FIXTURES))).rejects.toThrow(TemplateLoadError);
   });
 });

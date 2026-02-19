@@ -68,14 +68,10 @@ describe("runHooks", () => {
     const started: string[] = [];
     const completed: string[] = [];
 
-    await runHooks(
-      [{ command: "echo test", description: "Test hook" }],
-      tmpDir,
-      {
-        onStart: (hook) => started.push(hook.description),
-        onComplete: (result) => completed.push(result.description),
-      },
-    );
+    await runHooks([{ command: "echo test", description: "Test hook" }], tmpDir, {
+      onStart: (hook) => started.push(hook.description),
+      onComplete: (result) => completed.push(result.description),
+    });
 
     expect(started).toEqual(["Test hook"]);
     expect(completed).toEqual(["Test hook"]);

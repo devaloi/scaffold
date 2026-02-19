@@ -144,9 +144,7 @@ export function parseManifest(content: string): TemplateManifest {
     throw new ManifestError('Manifest must have a "variables" array');
   }
 
-  const variables = (doc["variables"] as unknown[]).map((v, i) =>
-    validateVariable(v, i),
-  );
+  const variables = (doc["variables"] as unknown[]).map((v, i) => validateVariable(v, i));
 
   let hooks: TemplateManifest["hooks"] = undefined;
 

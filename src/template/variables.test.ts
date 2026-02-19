@@ -63,10 +63,7 @@ describe("crossReference", () => {
   });
 
   it("identifies unused variables", () => {
-    const result = crossReference(
-      [makeVar("name"), makeVar("unused")],
-      ["{{name}}"],
-    );
+    const result = crossReference([makeVar("name"), makeVar("unused")], ["{{name}}"]);
     expect(result.unused).toContain("unused");
   });
 

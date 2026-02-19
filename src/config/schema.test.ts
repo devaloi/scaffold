@@ -65,21 +65,21 @@ describe("parseManifest", () => {
   });
 
   it("throws on missing description", () => {
-    expect(() =>
-      parseManifest(`name: test\nversion: "1.0"\nvariables: []`),
-    ).toThrow(ManifestError);
+    expect(() => parseManifest(`name: test\nversion: "1.0"\nvariables: []`)).toThrow(
+      ManifestError,
+    );
   });
 
   it("throws on missing version", () => {
-    expect(() =>
-      parseManifest(`name: test\ndescription: test\nvariables: []`),
-    ).toThrow(ManifestError);
+    expect(() => parseManifest(`name: test\ndescription: test\nvariables: []`)).toThrow(
+      ManifestError,
+    );
   });
 
   it("throws on missing variables", () => {
-    expect(() =>
-      parseManifest(`name: test\ndescription: test\nversion: "1.0"`),
-    ).toThrow(ManifestError);
+    expect(() => parseManifest(`name: test\ndescription: test\nversion: "1.0"`)).toThrow(
+      ManifestError,
+    );
   });
 
   it("throws on invalid variable type", () => {

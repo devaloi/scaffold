@@ -6,7 +6,11 @@ import chalk from "chalk";
 import { loadTemplate, listBuiltinTemplates } from "../template/loader.js";
 import { scaffold } from "../scaffold/scaffolder.js";
 import { runHooks } from "../scaffold/hooks.js";
-import { promptForVariables, promptForTemplate, buildContextFromFlags } from "./prompts.js";
+import {
+  promptForVariables,
+  promptForTemplate,
+  buildContextFromFlags,
+} from "./prompts.js";
 import {
   formatFileTree,
   successMessage,
@@ -80,9 +84,7 @@ async function runNewCommand(
           spinner.succeed("Template repository cloned");
         } catch (err) {
           spinner.fail("Failed to clone template repository");
-          console.error(
-            errorMessage(err instanceof Error ? err.message : String(err)),
-          );
+          console.error(errorMessage(err instanceof Error ? err.message : String(err)));
           process.exitCode = 1;
           return;
         }
@@ -108,7 +110,10 @@ async function runNewCommand(
     const template = await loadTemplate(templateDir);
 
     console.log(
-      "\n" + successMessage(`Template: ${chalk.bold(template.manifest.name)} (${template.manifest.description})`),
+      "\n" +
+        successMessage(
+          `Template: ${chalk.bold(template.manifest.name)} (${template.manifest.description})`,
+        ),
     );
 
     const flagContext: Record<string, string | boolean | undefined> = {};
@@ -119,11 +124,7 @@ async function runNewCommand(
 
     const hasAllRequired = template.manifest.variables
       .filter((v) => v.required)
-      .every(
-        (v) =>
-          flagContext[v.name] !== undefined ||
-          v.default !== undefined,
-      );
+      .every((v) => flagContext[v.name] !== undefined || v.default !== undefined);
 
     let context;
     if (hasAllRequired && options.name) {
@@ -137,7 +138,7 @@ async function runNewCommand(
         ? context["projectName"]
         : typeof context["name"] === "string"
           ? context["name"]
-          : options.name ?? "project";
+          : (options.name ?? "project");
     const outputDir = options.output ?? path.resolve(process.cwd(), projectName);
 
     if (options.dryRun) {
@@ -188,9 +189,7 @@ async function runNewCommand(
       await rm(cleanupDir, { recursive: true, force: true });
     }
   } catch (err) {
-    console.error(
-      errorMessage(err instanceof Error ? err.message : String(err)),
-    );
+    console.error(errorMessage(err instanceof Error ? err.message : String(err)));
     process.exitCode = 1;
   }
 }
@@ -206,9 +205,7 @@ async function runListCommand(): Promise<void> {
 
   console.log(chalk.bold("\n  Available templates:\n"));
   for (const manifest of manifests) {
-    console.log(
-      `  ${chalk.cyan.bold(manifest.name.padEnd(12))} ${manifest.description}`,
-    );
+    console.log(`  ${chalk.cyan.bold(manifest.name.padEnd(12))} ${manifest.description}`);
     if (manifest.variables.length > 0) {
       const varNames = manifest.variables.map((v) => v.name).join(", ");
       console.log(chalk.dim(`${"".padEnd(14)}Variables: ${varNames}`));
